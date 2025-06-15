@@ -1,9 +1,12 @@
 package com.student.validation.controller;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -48,6 +51,11 @@ public class StudentValidationController<T> {
 	@PostMapping("/store-student")
 	public Student storeStudentDetails(@RequestBody Student student) {
 		return studentRepository.save(student);
+	}
+	
+	@GetMapping("/{dept}")
+	public List<Student> getStudentDetailsBasedOnDept(@PathVariable("dept") String dept) {
+		return studentRepository.findByDept(dept);
 	}
 	
 	
